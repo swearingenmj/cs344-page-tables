@@ -29,7 +29,6 @@ void initialize_mem(void)
 
     // Mark zero page as "used" in the Used Page Table. (That is, set mem[0] to 1.)
     mem[0] = 1;
-
 }
 
 //
@@ -39,7 +38,6 @@ void initialize_mem(void)
 //
 unsigned char get_page(void)
 {
-    // TODO
     // For each page_number in the Used Page array in zero page:
     for (int page_number = 0; page_number < PAGE_COUNT; page_number++) {
 
@@ -53,11 +51,8 @@ unsigned char get_page(void)
             return page_number;
         }
     }
-        
-            
-            
-
     // return 0xff // indicating no free pages
+    return 0xff;
 }
 
 //
