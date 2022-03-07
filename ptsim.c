@@ -24,7 +24,12 @@ int get_address(int page, int offset)
 //
 void initialize_mem(void)
 {
-    // TODO
+    // Zero every byte of physical memory in the mem array.
+    mem[MEM_SIZE] = 0;
+
+    // Mark zero page as "used" in the Used Page Table. (That is, set mem[0] to 1.)
+    mem[0] = 1;
+
 }
 
 //
@@ -35,6 +40,24 @@ void initialize_mem(void)
 unsigned char get_page(void)
 {
     // TODO
+    // For each page_number in the Used Page array in zero page:
+    for (int page_number = 0; page_number < PAGE_COUNT; page_number++) {
+
+        // If it's unused (if it's 0):
+        if (mem[page_number] == 0) {
+
+            // mem[page_number] = 1 //mark used
+            mem[page_number] = 1;
+
+            // return the page_number
+            return page_number;
+        }
+    }
+        
+            
+            
+
+    // return 0xff // indicating no free pages
 }
 
 //
@@ -45,6 +68,33 @@ unsigned char get_page(void)
 void new_process(int proc_num, int page_count)
 {
     // TODO
+
+    // NewProcess(proc_num, page_count):
+    // // Get the page table page
+    // page_table = AllocatePage()
+
+    // // Set this process's page table pointer in zero page
+    // mem[64 + proc_num] = page_table
+
+    // // Allocate data pages
+    // For i from 0 to page_count:
+    //     new_page = AllocatePage()
+
+    //     // Set the page table to map virt -> phys
+    //     // Virtual page number is i
+    //     // Physical page number is new_page
+    //     pt_addr = GetAddress(page_table, i)
+    //     mem[pt_addr] = new_page
+
+    // If the initial page table allocation fails (due to out-of-memory), 
+    // the function should print:
+    //     printf("OOM: proc %d: page table\n", proc_num);
+    //         and return.
+
+    // If any of the subsequent page allocations fail, it should print:
+    //     printf("OOM: proc %d: data page\n", proc_num);
+    //         and return.
+
 }
 
 //
