@@ -25,7 +25,8 @@ int get_address(int page, int offset)
 void initialize_mem(void)
 {
     // Zero every byte of physical memory in the mem array.
-    mem[MEM_SIZE] = 0;
+    // mem[MEM_SIZE] = 0;
+    memset(mem, 0, MEM_SIZE);
 
     // Mark zero page as "used" in the Used Page Table. (That is, set mem[0] to 1.)
     mem[0] = 1;
