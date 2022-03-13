@@ -202,15 +202,19 @@ void store_value(int proc_num, int virt_addr, int value) {
     printf("Store proc %d: %d => %d, value=%d\n", proc_num, virt_addr, phys_addr, value);
 }
 
-// //
-// // Load a Value from Virtual Address
-// //
-// void load_value(int proc_num, int virt_addr) {
-//     // phys_addr = GetPhysicalAddr(proc_num, virt_addr)
-//     // value = mem[phys_addr]
+//
+// Load a Value from Virtual Address
+//
+void load_value(int proc_num, int virt_addr) {
+    // phys_addr = GetPhysicalAddr(proc_num, virt_addr)
+    int phys_addr = get_physical_address(proc_num, virt_addr);
 
-//     // printf("Load proc %d: %d => %d, value=%d\n", proc_num, vaddr, addr, val);
-// }
+    // value = mem[phys_addr]
+    int value = mem[phys_addr];
+
+    // printf("Load proc %d: %d => %d, value=%d\n", proc_num, vaddr, addr, val);
+    printf("Load proc %d: %d => %d, value=%d\n", proc_num, virt_addr, phys_addr, value);
+}
 
 //
 // Main -- process command line
