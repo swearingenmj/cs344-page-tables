@@ -165,21 +165,28 @@ void kill_process(int p) {
 //
 // Coverting Virtual Address to Physical Address
 //
-// void get_physical_address(int proc_num, int virtual_addr) {
-//     // virtual_page = virtua_address >> 8
-//     // offset = virtual_address & 255
-//     // phsy_addr = (phys_page << 8) | offset
+int get_physical_address(int proc_num, int virtual_addr) {
+    // virtual_page = virtual_address >> 8
+    // offset = virtual_address & 255
+    // phsy_addr = (phys_page << 8) | offset
     
-//     // Get the virtual page (see code above)
+    // Get the virtual page (see code above)
+    int virtual_page = virtual_addr >> 8;
 
-//     // Get the offset
+    // Get the offset
+    int offset = virtual_addr & 255;
 
-//     // Get the physical page from the page table
+    // Get the physical page from the page table
+    int page_table = get_page_table(proc_num);
+    int page_table_address = get_address(page_table, virtual_page);
+    int phys_page = mem[page_table_address];
 
-//     // Build the physical address from the phys page and offset
+    // Build the physical address from the phys page and offset
+    int phys_addr = (phys_page << 8) | offset;
 
-//     // Return it
-// }
+    // Return it
+    return phys_addr;
+}
 
 // //
 // // Store a Value at a Virtual Address
