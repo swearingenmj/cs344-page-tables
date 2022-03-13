@@ -188,15 +188,19 @@ int get_physical_address(int proc_num, int virtual_addr) {
     return phys_addr;
 }
 
-// //
-// // Store a Value at a Virtual Address
-// //
-// void store_value(int proc_num, int virt_addr, int value) {
-//     // phys_addr = get_physical_address(proc_num, virt_addr)
-//     // mem[phys_addr] = value
+//
+// Store a Value at a Virtual Address
+//
+void store_value(int proc_num, int virt_addr, int value) {
+    // phys_addr = get_physical_address(proc_num, virt_addr)
+    int phys_addr = get_physical_address(proc_num, virt_addr);
 
-//     // printf("Store proc %d: %d => %d, value=%d\n", proc_num, vaddr, addr, val);
-// }
+    // mem[phys_addr] = value
+    mem[phys_addr] = value;
+
+    // printf("Store proc %d: %d => %d, value=%d\n", proc_num, vaddr, addr, val);
+    printf("Store proc %d: %d => %d, value=%d\n", proc_num, virt_addr, phys_addr, value);
+}
 
 // //
 // // Load a Value from Virtual Address
