@@ -93,6 +93,69 @@ unsigned char get_page_table(int proc_num)
 }
 
 //
+// Deallocate a Page
+//
+void deallocate_page(int p) {
+    // Set the value at address p in seropage to 0
+    mem[p] = 0;
+}
+
+//
+// Kill a Process
+//
+void kill_process(int p) {
+    // Get the page table page for this process
+
+    // Get the page table for this process
+
+    // For each entry in the page table
+        // If it's not 0:
+            // Deallocate that page
+    
+    // Deallocate the page table page
+
+}
+
+//
+// Coverting Virtual Address to Physical Address
+//
+void get_physical_address(int proc_num, int virtual_addr) {
+    // virtual_page = virtua_address >> 8
+    // offset = virtual_address & 255
+    // phsy_addr = (phys_page << 8) | offset
+    
+    // Get the virtual page (see code above)
+
+    // Get the offset
+
+    // Get the physical page from the page table
+
+    // Build the physical address from the phys page and offset
+
+    // Return it
+}
+
+//
+// Store a Value at a Virtual Address
+//
+void store_value(int proc_num, int virt_addr, int value) {
+    // phys_addr = get_physical_address(proc_num, virt_addr)
+    // mem[phys_addr] = value
+
+    // printf("Store proc %d: %d => %d, value=%d\n", proc_num, vaddr, addr, val);
+}
+
+//
+// Load a Value from Virtual Address
+//
+void load_value(int proc_num, int virt_addr) {
+    // phys_addr = GetPhysicalAddr(proc_num, virt_addr)
+    // value = mem[phys_addr]
+
+    // printf("Load proc %d: %d => %d, value=%d\n", proc_num, vaddr, addr, val);
+}
+
+//
 // Print the free page map
 //
 void print_page_free_map(void)
